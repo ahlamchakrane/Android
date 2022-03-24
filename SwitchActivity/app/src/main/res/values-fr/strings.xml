@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Filmes</string>
+    <string name="image">TODO</string>
+    <string name="textview">TextView</string>
+    <string name="it_s_time_to_watch_your_preferred_movie">C\'est le moment pour regarder ton film préféré!</string>
+    <string name="hello_there_welcome_back">Bienvenue pour votre retour</string>
+    <string name="sign_in_to_continue">Connectez-Vous pour continuer</string>
+    <string name="sign_in">Se Connecter</string>
+    <string name="password">Mot de passe</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="back_home">Retour</string>
+</resources>
