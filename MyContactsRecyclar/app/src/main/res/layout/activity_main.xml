@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+        tools:layout_editor_absoluteX="130dp">
+
+        <EditText
+            android:id="@+id/text_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="Search"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="407dp"
+        android:layout_height="386dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_person_page"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp"
+        tools:listitem="@layout/list_row" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_person_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:onClick="ajouterContact"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_person_add"
+        tools:ignore="MissingConstraints,UnknownId"
+        tools:layout_editor_absoluteX="324dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
