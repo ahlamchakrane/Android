@@ -10,8 +10,8 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/id_person"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profil"
             android:layout_width="52dp"
             android:layout_height="54dp"
             android:layout_marginStart="8dp"
@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/text_view"
-            android:layout_width="180dp"
+            android:layout_width="128dp"
             android:layout_height="52dp"
             android:textSize="14sp" />
 
@@ -30,12 +30,19 @@
             android:layout_height="31dp"
             android:layout_marginStart="10dp"
             android:src="@drawable/edit" />
+
         <ImageView
             android:id="@+id/bt_call"
             android:layout_width="30dp"
             android:layout_height="31dp"
             android:layout_marginStart="10dp"
             android:src="@drawable/ic_phone" />
+
+        <ImageView
+            android:id="@+id/bt_sms"
+            android:layout_width="45dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_message" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

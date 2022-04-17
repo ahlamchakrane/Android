@@ -1,29 +1,31 @@
 package com.tp3.mycontactsrecyclar;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class addPersonPage extends AppCompatActivity {
-   EditText editText1, editText2, editText3, editText4, editText5;
-    RecyclerView recyclerView ;
-
-
+    EditText editText1, editText2, editText3, editText4, editText5;
+    public static CircleImageView profil;
+    public static String photoUriPath;
     List<MainData> dataList = new ArrayList<>();
-    LinearLayoutManager linearLayoutManager ;
     RoomDB database ;
-
     MainAdapter adapter ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,18 @@ public class addPersonPage extends AppCompatActivity {
         editText3 = findViewById(R.id.jobID);
         editText4 = findViewById(R.id.phoneID);
         editText5 = findViewById(R.id.emailID);
+        profil = findViewById(R.id.profil);
+        /*profil .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1, 1)
+                        .start(addPersonPage.this);
+            }
+        });*/
     }
+
     public void back(View v){
         Intent intent = new Intent(addPersonPage.this, MainActivity.class);
         startActivity(intent);
@@ -47,7 +60,8 @@ public class addPersonPage extends AppCompatActivity {
         String phone = editText4.getText().toString().trim();
         String email= editText5.getText().toString().trim();
         //traitement de sauvegarde
-        if (!firstName.equals("") && !lastName.equals("") && !job.equals("") && !phone.equals("") && !email.equals("")) {
+        if (!(TextUtils.isEmpty(editText1.getText().toString().trim()) || TextUtils.isEmpty(editText2.getText().toString().trim()) || TextUtils.isEmpty(editText3.getText().toString().trim()) || TextUtils.isEmpty(editText4.getText().toString().trim()) || TextUtils.isEmpty(editText5.getText().toString().trim())) ) {
+
             // when text is not empty
             // Initialize main data
             MainData data = new MainData();
@@ -57,7 +71,27 @@ public class addPersonPage extends AppCompatActivity {
             data.setJob(job);
             data.setPhone(phone);
             data.setEmail(email);
-            //insert text in database
+            //image
+         /*   String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/MyContacts";
+            String photoFileName = email+".jpg";
+            File file = new File(rootPath, photoFileName);
+            FileOutputStream stream;
+            try {
+                stream = new FileOutputStream(file);
+                try {
+                    byte[] bytesArray = new byte[(int) new File(photoUriPath).length()];
+                    FileInputStream fileInputStream = new FileInputStream(new File(photoUriPath));
+                    fileInputStream.read(bytesArray);
+                    stream.write(bytesArray);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    stream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            data.setProfil(photoFileName);*/
             database.mainDao().insert(data);
             // clear edit text
             editText1.setText("");
@@ -65,6 +99,7 @@ public class addPersonPage extends AppCompatActivity {
             editText3.setText("");
             editText4.setText("");
             editText5.setText("");
+            Picasso.get().load(R.drawable.ic_person_add).into(profil);
             //Notify when data is inserted
             dataList.clear();
             dataList.addAll(database.mainDao().getAll());
@@ -77,12 +112,12 @@ public class addPersonPage extends AppCompatActivity {
             Toast.makeText(this,"Merci de remplir tous les champs",Toast.LENGTH_LONG).show();
         }
 
-        }
+    }
     public void reset(View v){
-            editText1.setText("");
-            editText2.setText("");
-            editText3.setText("");
-            editText4.setText("");
-            editText5.setText("");
+        editText1.setText("");
+        editText2.setText("");
+        editText3.setText("");
+        editText4.setText("");
+        editText5.setText("");
     }
 }

@@ -23,6 +23,7 @@ public class MainData implements Serializable {
     private String phone;
     @ColumnInfo(name = "email")
     private String email;
+    private  String profil;
 
     public int getID() {
         return ID;
@@ -71,6 +72,15 @@ public class MainData implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getProfil() {
+        return profil;
+    }
+
+    public void setProfil(String profil) {
+        this.profil = profil;
+    }
+
 
     @Override
     public String toString() {

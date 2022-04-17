@@ -5,7 +5,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.nfc.Tag;
+import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +27,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
@@ -33,6 +45,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public MainAdapter(Activity context, List<MainData> dataList) {
         this.context = context;
         this.dataList = dataList;
+
         notifyDataSetChanged();
     }
 
@@ -47,12 +60,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MainData data = dataList.get(position);
+
         //Initialize database
         database = RoomDB.getInstance(context);
         //Set text on text view
         holder.textView.setText(data.toString());
 
         holder.btEdit.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 //Initialize main data
@@ -91,6 +106,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 EditText editText3 = dialog.findViewById(R.id.edit_job);
                 EditText editText4 = dialog.findViewById(R.id.edit_phone);
                 EditText editText5 = dialog.findViewById(R.id.edit_email);
+                CircleImageView profil = dialog.findViewById(R.id.profil);
 
                 Button btUpdate= dialog.findViewById(R.id.bt_update);
 
@@ -101,6 +117,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 editText4.setText(sPhone);
                 editText5.setText(sEmail);
 
+                if (d.getProfil() != null) {
+                    String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyContacts";
+                    File file = new File(rootPath,d.getProfil() );
+                    Picasso.get().load(file).into(profil);
+                }
 
                 btUpdate.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -121,6 +142,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                         notifyDataSetChanged();
                     }
                 });
+
             }
         });
 
@@ -160,6 +182,33 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 }
             }
         });
+        holder.sms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms",data.getPhone(), null)));
+            }
+        });
+
+        if (data.getProfil() != null) {
+            String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyContacts";
+            File file = new File(rootPath, data.getProfil());
+            Picasso.get().load(file).into(holder.profil);
+        }
+        holder.profil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainData contact = dataList.get(holder.getAdapterPosition());
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.image_viewer);
+                dialog.setCancelable(true);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                CircleImageView image = dialog.findViewById(R.id.profil);
+                String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyContacts";
+                File file = new File(rootPath, contact.getProfil());
+                Picasso.get().load(file).into(image);
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -173,18 +222,22 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
-        ImageView btEdit, btDelete, btCall;
+        ImageView btEdit, btCall, sms;
+        CircleImageView profil;
+
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-
             textView = itemView.findViewById(R.id.text_view);
             btEdit = itemView.findViewById(R.id.bt_edit);
             btCall= itemView.findViewById(R.id.bt_call);
+            profil = itemView.findViewById(R.id.profil);
+            sms = itemView.findViewById(R.id.bt_sms);
         }
 
 
     }
+
 }
 
 

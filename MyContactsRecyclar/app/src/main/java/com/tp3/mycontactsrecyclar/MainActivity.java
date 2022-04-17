@@ -1,33 +1,27 @@
 package com.tp3.mycontactsrecyclar;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.cast.framework.media.ImagePicker;
-
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,12 +32,18 @@ public class MainActivity extends AppCompatActivity {
     RoomDB database;
     MainAdapter adapter;
     EditText searchedText;
-    ImageView profil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         searchedText = findViewById(R.id.text_search);
+        String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/MyContacts";
+        File file = new File(rootPath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
         searchedText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -59,30 +59,8 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 filter(editable.toString());
             }
+
         });
-        profil = findViewById(R.id.profil);
-        profil.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View view) {
-                boolean pick = true;
-                if(pick==true){
-                    if(!checkCameraPermission()){
-                        requestCameraPermission();
-                    } else {
-                        if(!checkStoragePermission()){
-                            requestStoragePermission();
-                        }
-                        else {
-                            PickImage();
-                        }
-                    }
-                }
-            }
-        });
-
-
-
         recyclerView = findViewById(R.id.recycler_view);
 
 
@@ -101,23 +79,12 @@ public class MainActivity extends AppCompatActivity {
         // set Adapter
         recyclerView.setAdapter(adapter);
     }
-
-    private void PickImage() {
-     /*   CropImage.activity()
-                .setGuidlines(CropImageView.Guidelines.ON)
-                .start(this); */
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestStoragePermission() {
-        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
-    }
-
-    public void ajouterContact(View v){
+ public void ajouterContact(View v){
         Intent intent = new Intent(MainActivity.this, addPersonPage.class);
         startActivity(intent);
         //finish();
     }
+    //for reaserch
     private void filter(String text){
         ArrayList<MainData> filterdList = new ArrayList<>();
         for(MainData item: dataList){
@@ -127,18 +94,53 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.filterList(filterdList);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-    private  boolean checkCameraPermission(){
-        boolean res1 = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED;
-        boolean res2 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
-        return res1 && res2;
+                } else {
+
+                    Toast.makeText(MainActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
     }
-    private  boolean checkStoragePermission(){
-        boolean res1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
-        return res1;
-    }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestCameraPermission(){
-        requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if ( resultCode == RESULT_OK) {
+            Uri imageUri = data.getData();
+
+            CropImage.activity(imageUri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setCropShape(CropImageView.CropShape.OVAL)
+                    .setAspectRatio(1, 1)
+                    .start(this);
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+
+                addPersonPage.photoUriPath = result.getUri().getPath();
+                addPersonPage.profil.setImageURI(result.getUri());
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+                Log.e("Tag" + "crop_error", error.toString());
+            }
+        }
+
+
+
+
     }
 }
