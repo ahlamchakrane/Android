@@ -77,10 +77,12 @@
 
             <EditText
                 android:id="@+id/phoneID"
-                android:layout_width="127dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="phone" />
+                android:ems="10"
+                android:hint="Phone"
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout

@@ -7,6 +7,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         android:orientation="horizontal"
         android:padding="16dp">
 
@@ -16,6 +18,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="90dp"
             android:hint="search"
+            android:focusable="true"
             android:textSize="20sp" />
 
         <ImageView
