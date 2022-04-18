@@ -2,9 +2,11 @@ package com.tp3.mycontactsrecyclar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -15,6 +17,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -32,35 +35,27 @@ public class MainActivity extends AppCompatActivity {
     RoomDB database;
     MainAdapter adapter;
     EditText searchedText;
-
+    double numberContacts = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchedText = findViewById(R.id.text_search);
+
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CALL_PHONE
+        },1);
+
+
+
+
         String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/MyContacts";
         File file = new File(rootPath);
         if (!file.exists()) {
             file.mkdirs();
         }
-        searchedText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
-            }
-
-        });
         recyclerView = findViewById(R.id.recycler_view);
 
 
@@ -68,7 +63,25 @@ public class MainActivity extends AppCompatActivity {
         database = RoomDB.getInstance(this);
         // store database value in data list
         dataList = database.mainDao().getAll();
-
+        searchedText = findViewById(R.id.text_search);
+        searchedText.setHint("Rechercher parmi les "+dataList.size()+" contacts");
+        searchedText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchedText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        filter(editable.toString());
+                    }
+                });
+            }
+        });
         // initilize linear layout manager
 
         linearLayoutManager = new LinearLayoutManager(this);
@@ -110,37 +123,5 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        if ( resultCode == RESULT_OK) {
-            Uri imageUri = data.getData();
-
-            CropImage.activity(imageUri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setCropShape(CropImageView.CropShape.OVAL)
-                    .setAspectRatio(1, 1)
-                    .start(this);
-        }
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-
-                addPersonPage.photoUriPath = result.getUri().getPath();
-                addPersonPage.profil.setImageURI(result.getUri());
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-                Log.e("Tag" + "crop_error", error.toString());
-            }
-        }
-
-
-
-
     }
 }

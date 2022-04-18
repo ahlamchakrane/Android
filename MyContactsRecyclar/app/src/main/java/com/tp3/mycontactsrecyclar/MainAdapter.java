@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +28,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,12 +47,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private List<MainData> dataList;
     private Activity context;
     private RoomDB database;
-
+    public static CircleImageView profil;
+    public static String photoUriPath;
     //create constructor
     public MainAdapter(Activity context, List<MainData> dataList) {
         this.context = context;
         this.dataList = dataList;
-
         notifyDataSetChanged();
     }
 
@@ -54,13 +61,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_row, parent, false);
+
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MainData data = dataList.get(position);
-
         //Initialize database
         database = RoomDB.getInstance(context);
         //Set text on text view
@@ -70,6 +77,17 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
             @Override
             public void onClick(View view) {
+                //image
+                profil = view.findViewById(R.id.profil);
+              /*  profil.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CropImage.activity()
+                                .setGuidelines(CropImageView.Guidelines.ON)
+                                .setAspectRatio(1, 1)
+                                .start(context);
+                    }
+                });*/
                 //Initialize main data
                 MainData d=dataList.get(holder.getAdapterPosition());
                 //Get id
@@ -126,20 +144,48 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 btUpdate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //dismiss dialog
-                        dialog.dismiss();
-                        //get updated text from edit text
-                        String uName = editText.getText().toString().trim();
-                        String uLastName = editText2.getText().toString().trim();
-                        String ujob = editText3.getText().toString().trim();
-                        String uPhone = editText4.getText().toString().trim();
-                        String uEmail = editText5.getText().toString().trim();
-                        //update text in database
-                        database.mainDao().update(sID, uName, uLastName, ujob, uPhone,uEmail);
-                        //Notify when data is updated
-                        dataList.clear();
-                        dataList.addAll(database.mainDao().getAll());
-                        notifyDataSetChanged();
+                        if (!(TextUtils.isEmpty(editText.getText().toString().trim()) || TextUtils.isEmpty(editText2.getText().toString().trim()) || TextUtils.isEmpty(editText3.getText().toString().trim()) || TextUtils.isEmpty(editText4.getText().toString().trim()) || TextUtils.isEmpty(editText5.getText().toString().trim())) /*&& photoUriPath != null */) {
+
+                            //dismiss dialog
+                            dialog.dismiss();
+                            //image
+                           /* String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyContacts";
+                            String photoFileName = editText5.getText().toString().split("@")[0] + ".jpg";
+                            File file = new File(rootPath, photoFileName);
+                            FileOutputStream stream;
+                            try {
+                                stream = new FileOutputStream(file);
+                                try {
+                                    byte[] bytesArray = new byte[(int) new File(photoUriPath).length()];
+
+                                    FileInputStream fileInputStream = new FileInputStream(new File(photoUriPath));
+                                    fileInputStream.read(bytesArray);
+                                    stream.write(bytesArray);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    stream.close();
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }*/
+                            //get updated text from edit text
+                            String uName = editText.getText().toString().trim();
+                            String uLastName = editText2.getText().toString().trim();
+                            String ujob = editText3.getText().toString().trim();
+                            String uPhone = editText4.getText().toString().trim();
+                            String uEmail = editText5.getText().toString().trim();
+
+                            //update text in database
+                            database.mainDao().update(sID, uName, uLastName, ujob, uPhone, uEmail);
+                            //Notify when data is updated
+                            dataList.clear();
+                            Picasso.get().load(R.drawable.ic_person_add).into(profil);
+                            dataList.addAll(database.mainDao().getAll());
+                            notifyDataSetChanged();
+                        }else {
+                            Snackbar.make(view, "Please fill in all the fields correctly !", Snackbar.LENGTH_LONG).setAction("Okay", null).show();
+                        }
                     }
                 });
 

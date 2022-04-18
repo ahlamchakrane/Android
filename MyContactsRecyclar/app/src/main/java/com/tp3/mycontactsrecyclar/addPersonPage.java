@@ -1,11 +1,15 @@
 package com.tp3.mycontactsrecyclar;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -36,7 +40,7 @@ public class addPersonPage extends AppCompatActivity {
         editText4 = findViewById(R.id.phoneID);
         editText5 = findViewById(R.id.emailID);
         profil = findViewById(R.id.profil);
-        /*profil .setOnClickListener(new View.OnClickListener() {
+        profil .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CropImage.activity()
@@ -44,7 +48,7 @@ public class addPersonPage extends AppCompatActivity {
                         .setAspectRatio(1, 1)
                         .start(addPersonPage.this);
             }
-        });*/
+        });
     }
 
     public void back(View v){
@@ -60,8 +64,7 @@ public class addPersonPage extends AppCompatActivity {
         String phone = editText4.getText().toString().trim();
         String email= editText5.getText().toString().trim();
         //traitement de sauvegarde
-        if (!(TextUtils.isEmpty(editText1.getText().toString().trim()) || TextUtils.isEmpty(editText2.getText().toString().trim()) || TextUtils.isEmpty(editText3.getText().toString().trim()) || TextUtils.isEmpty(editText4.getText().toString().trim()) || TextUtils.isEmpty(editText5.getText().toString().trim())) ) {
-
+        if (!(TextUtils.isEmpty(editText1.getText().toString().trim()) || TextUtils.isEmpty(editText2.getText().toString().trim()) || TextUtils.isEmpty(editText3.getText().toString().trim()) || TextUtils.isEmpty(editText4.getText().toString().trim()) || TextUtils.isEmpty(editText5.getText().toString().trim())) && photoUriPath != null ) {
             // when text is not empty
             // Initialize main data
             MainData data = new MainData();
@@ -72,7 +75,7 @@ public class addPersonPage extends AppCompatActivity {
             data.setPhone(phone);
             data.setEmail(email);
             //image
-         /*   String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/MyContacts";
+          String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/MyContacts";
             String photoFileName = email+".jpg";
             File file = new File(rootPath, photoFileName);
             FileOutputStream stream;
@@ -91,7 +94,7 @@ public class addPersonPage extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            data.setProfil(photoFileName);*/
+            data.setProfil(photoFileName);
             database.mainDao().insert(data);
             // clear edit text
             editText1.setText("");
@@ -103,7 +106,7 @@ public class addPersonPage extends AppCompatActivity {
             //Notify when data is inserted
             dataList.clear();
             dataList.addAll(database.mainDao().getAll());
-            adapter.notifyDataSetChanged();
+            //adapter.notifyDataSetChanged();
             //revenir vers la age d'acceuil
             Intent intent = new Intent(addPersonPage.this, MainActivity.class);
             startActivity(intent);
@@ -120,4 +123,24 @@ public class addPersonPage extends AppCompatActivity {
         editText4.setText("");
         editText5.setText("");
     }
-}
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+
+                photoUriPath = result.getUri().getPath();
+                profil.setImageURI(result.getUri());
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+                Log.e("Tag" + "crop_error", error.toString());
+            }
+        }
+    }
+
+
+    }
