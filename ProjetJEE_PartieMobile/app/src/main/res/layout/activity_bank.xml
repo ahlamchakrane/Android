@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bank.BankActivity">
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="189dp">
+        <EditText
+            android:id="@+id/text_search"
+            android:layout_width="290dp"
+            android:layout_height="45dp"
+            android:focusable="true"
+            android:textSize="15sp" />
+    </androidx.appcompat.widget.SearchView>
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/partial_bank_activity" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabCradleMargin="8dp"
+        app:fabCradleRoundedCornerRadius="16dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#B9B9B9"
+            android:onClick="addSavingAccount"
+            android:id="@+id/addSavingAccount"
+            android:text="+Saving Account"
+            android:layout_marginLeft="1dp"
+            android:src="@drawable/add" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#B9B9B9"
+            android:onClick="addCurrentAccount"
+            android:id="@+id/addCurrentAccount"
+            android:layout_marginLeft="20dp"
+            android:text="+Current Account"
+            android:src="@drawable/add" />
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

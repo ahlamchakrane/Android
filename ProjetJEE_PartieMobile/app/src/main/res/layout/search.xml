@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="90dp"
+            android:hint="search"
+            android:focusable="true"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/bt_search"
+            android:layout_width="50dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="0dp"
+            android:src="@drawable/search" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

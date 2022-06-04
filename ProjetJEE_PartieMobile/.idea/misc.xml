@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable-v24/reset.xml" value="0.1935" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable-v24/saveCustomer.xml" value="0.1935" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/empty_background.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_cart.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_debit.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_flazz.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_home.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_mastercard.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_qr.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_transfer.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/drawable/ic_user.xml" value="0.1665" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/activity_account.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/activity_bank.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/activity_current.xml" value="0.1" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/dialog_update_account.xml" value="0.18" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/dialog_update_bank.xml" value="0.22" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/dialog_update_customer.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/forms_account.xml" value="0.15729166666666666" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/forms_bank.xml" value="0.15729166666666666" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/forms_current.xml" value="0.25" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/forms_customer.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/forms_saving.xml" value="0.25" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/item_account.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/item_activity.xml" value="0.25" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/item_bank.xml" value="0.209375" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/item_customer.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/partial_account_activity.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/partial_action.xml" value="0.33" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/partial_bank_activity.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/partial_main_activity.xml" value="0.25" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/partial_main_activity2.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ProjetJee/app/src/main/res/layout/search.xml" value="0.15729166666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

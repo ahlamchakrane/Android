@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Mobile Banking</string>
+    <string-array name="status">
+        <item>ACTIVATED</item>
+        <item>CREATED</item>
+        <item>SUSPENDED</item>
+    </string-array>
+    <string-array name="operationType">
+        <item>DEBIT</item>
+        <item>CREDIT</item>
+    </string-array>
+
+</resources>
