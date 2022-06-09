@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profil"
+        android:layout_marginLeft="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_account" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="Name"
+        android:lines="1"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/edit_lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="last Name"
+        android:lines="1"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/edit_job"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="Job"
+        android:lines="1"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="Phone"
+        android:ems="5"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="email"
+        android:lines="1"
+        android:padding="12dp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_update"
+        android:text="Update"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_rectangle"/>
+
+
+</LinearLayout>
