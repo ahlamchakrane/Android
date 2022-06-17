@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Carte Normale" app:showAsAction="never" android:id="@+id/normal_map"/>
+    <item android:title="Carte Hybide" app:showAsAction="never" android:id="@+id/hybrid_map"/>
+    <item android:title="Carte Satellite" app:showAsAction="never" android:id="@+id/satellite_map"/>
+    <item android:title="Carte Relief" app:showAsAction="never" android:id="@+id/terrain_map"/>
+</menu>
