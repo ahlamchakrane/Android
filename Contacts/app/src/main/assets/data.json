@@ -1,0 +1,93 @@
+{
+  "contacts" : [
+    {
+      "id" : 1,
+      "first_name" : "Mohamed",
+      "last_name" : "Aalami",
+      "job": "Systems Architect",
+      "email" : "m.alami@gmail.com",
+      "phone": "0628294375"
+    },
+    {
+      "id" : 2,
+      "first_name" : "Sara",
+      "last_name" : "El Amrani",
+      "job": "Sales Engineer",
+      "email" : "s.elamrani@gmail.com",
+      "phone": "0661568712"
+    },
+    {
+      "id" : 3,
+      "first_name" : "Rachid",
+      "last_name" : "Mobtassim",
+      "job": "Mobile Developer",
+      "email" : "r.mobtassim@gmail.com",
+      "phone": "0618312546"
+    },
+    {
+      "id" : 4,
+      "first_name" : "Majida",
+      "last_name" : "Khalil",
+      "job": "Devops Engineer",
+      "email" : "m.khalil@gmail.com",
+      "phone": "0618654532"
+    },
+    {
+      "id" : 5,
+
+      "first_name" : "Nabil",
+      "last_name" : "Hachimi",
+      "job": "Data Engineer",
+      "email" : "n.hachimi@gmail.com",
+      "phone": "0617656538"
+    },
+    {
+      "id" : 6,
+      "first_name" : "Salma",
+      "last_name" : "Semlali",
+      "job": "Project Manager",
+      "email" : "s.semlali@gmail.com",
+      "phone": "0678654459"
+    },
+    {
+      "id" : 7,
+      "first_name" : "Ahlam",
+      "last_name" : "Chakrane",
+      "job": "Project Manager",
+      "email" : "a.chakrane@gmail.com",
+      "phone": "0678654459"
+    },
+    {
+      "id" : 8,
+      "first_name" : "Meriam",
+      "last_name" : "Dref",
+      "job": "Project Manager",
+      "email" : "m.dref@gmail.com",
+      "phone": "0678654459"
+    },
+    {
+      "id" : 9,
+      "first_name" : "Salma",
+      "last_name" : "cherif",
+      "job": "Project Manager",
+      "email" : "s.salma@gmail.com",
+      "phone": "0678654459"
+    },
+    {
+      "id" : 10,
+      "first_name" : "aymane",
+      "last_name" : "alami",
+      "job": "Project Manager",
+      "email" : "a.alami@gmail.com",
+      "phone": "0678654459"
+    },
+    {
+      "id" : 11,
+      "first_name" : "youssef",
+      "last_name" : "dalil",
+      "job": "Project Manager",
+      "email" : "y.dalil@gmail.com",
+      "phone": "0678654459"
+    }
+  ]
+}
