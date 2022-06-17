@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icon"
+        android:layout_marginLeft="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+
+    <EditText
+        android:id="@+id/dt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="Date et heure"
+        android:lines="1"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/main_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="main_temp"
+        android:lines="1"
+        android:padding="12dp" />
+    <EditText
+        android:id="@+id/main_feels_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="main_feels_like"
+        android:lines="1"
+        android:padding="12dp" />
+    <EditText
+        android:id="@+id/main_temp_min"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="main_temp_min"
+        android:lines="1"
+        android:padding="12dp" />
+    <EditText
+        android:id="@+id/main_temp_max"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="main_temp_max"
+        android:lines="1"
+        android:padding="12dp" />
+    <EditText
+        android:id="@+id/main_pressure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="main_pressure"
+        android:lines="1"
+        android:padding="12dp" />
+    <EditText
+        android:id="@+id/main_humidity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="main_humidity"
+        android:lines="1"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/wind_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:gravity="top"
+        android:hint="wind_speed"
+        android:lines="1"
+        android:padding="12dp" />
+
+</LinearLayout>
