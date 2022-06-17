@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/add.xml" value="0.1395" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/delete.xml" value="0.122" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/ic_home.xml" value="0.16" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/reset.xml" value="0.16" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/rounded_rectangle.xml" value="0.16" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/drawable/task.xml" value="0.1425" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/activity_detail.xml" value="0.1539855072463768" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/activity_main.xml" value="0.1539855072463768" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/dialogue_add.xml" value="0.24452554744525548" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/dialogue_update.xml" value="0.17753623188405798" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/forms.xml" value="0.17753623188405798" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/item.xml" value="0.22" />
+        <entry key="..\:/Users/Ahlam/AndroidStudioProjects/ServeurDistant/app/src/main/res/layout/search.xml" value="0.17753623188405798" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
